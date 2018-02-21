@@ -2,7 +2,6 @@
 
 use strict;
 
-my $DEBUG = 2; # 0, 1, 2 = Debuglevels
 my $out = "";
 
 my $veeamconfig = "/usr/bin/veeamconfig";
@@ -12,6 +11,7 @@ my $session_id = "";
 my $job_state = "";
 my $sleeptime = 5;
 my $hostname = `hostname -f`; chomp($hostname);
+my $starttime = time;
 
 # Get Job-ID of configured Veeam Backup Job, in Free-Edition there can only be one Job existent
 $out = `$veeamconfig job list`; $job_id = $1 if ($out =~ /(\{[\w\-]+\})/m);
@@ -35,10 +35,11 @@ do { sleep($sleeptime);
      $sleeptime = 60 if ($job_state =~ /Running/i);
 } while ($job_state =~ /Running/i);
 
+print timestamp() . " - Backup-Script execution time: " . sprintf("%.1f", (time-$starttime)/60) . " Minutes.\n";
 print timestamp() . " - Finished Job-Monitoring with Job-State: $job_state\n";
 if ($job_state =~ /Success/i) { exit 0; }
 else { print STDERR "ERROR: Veeam Backup failed on Server $hostname at " . timestamp() ."\n";
-       print STDERR "Get details by executing: $veeamconfig session log --id $session_id";
+       print STDERR "Get details by executing: $veeamconfig session log --id $session_id\n";
        exit 100;
      }
 
