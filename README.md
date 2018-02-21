@@ -1,6 +1,6 @@
 # veeam_backup.pl
-* Veeam Backup Script for Linux, written in Perl
-* Usable in crontab or cron.d 
+* Veeam Backup Script for Linux, written in Perl: [veeam_backup.pl](veeam_backup.pl)
+* Usable in crontab or cron.d - Sample-Shellscript: [backup.sh](backup.sh)
 * If used by cron.d it can send mail to root if not successful
 
 ## Does
