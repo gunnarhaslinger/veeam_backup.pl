@@ -11,6 +11,7 @@
 * Writes to STDERR only on Error, to StdOut for Logging
 
 ## Demo-Output
+* Backup OK
 ```
 2018-02-21 03:11:10 - Starting Veeam Backup-Job Name: NC-FullSystem-Backup (ID: {59d71731-c829-403c-a352-f5024d20349e}) ...
 2018-02-21 03:11:19 - querying Job Session {6576b8e5-e215-4789-93e2-858f30014a69} State: Running
@@ -24,4 +25,11 @@
 2018-02-21 03:19:28 - querying Job Session {6576b8e5-e215-4789-93e2-858f30014a69} State: Running
 2018-02-21 03:20:28 - querying Job Session {6576b8e5-e215-4789-93e2-858f30014a69} State: Success
 2018-02-21 03:20:28 - Finished Job-Monitoring with Job-State: Success
+```
+* Sample-Output, something was wrong, Return-Code >0
+```
+...
+2018-02-21 09:21:09 - Finished Job-Monitoring with Job-State: Failed
+ERROR: Veeam Backup failed on Server demosrv1.demo.xyz at 2018-02-21 09:21:09
+Get details by executing: /usr/bin/veeamconfig session log --id {59d71731-c829-403c-a352-f5024d20349e}
 ```
